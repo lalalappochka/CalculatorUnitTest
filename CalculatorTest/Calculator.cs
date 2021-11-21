@@ -1,58 +1,66 @@
-using NUnit.Framework;
+using Xunit;
 using System;
 
 namespace calculator.Tests
 {
+    
     public class Tests
     {
-        private Calculator calculator = new Calculator();
+       public Tests()
+        {
+            calculator = new Calculator();
+        }
+        private Calculator calculator;
 
-        [TestCase(4, 5, 9)]
-        [TestCase(11.2, 0.8, 12)]
-        [TestCase(-1, 3, 2)]
+        [Theory]
+        [InlineData(4, 5, 9)]
+        [InlineData(11.2, 0.8, 12)]
+        [InlineData(-1, 3, 2)]
         public void SumTest(double x, double y, double result)
         {
-            Assert.AreEqual(result, calculator.Sum(x, y));
+            Assert.Equal(result, calculator.Sum(x, y));
         }
 
-
-        [TestCase(4, 5, -1)]
-        [TestCase(22.3, 11.5, 10.8)]
-        [TestCase(13, -5, 18)]
+        [Theory]
+        [InlineData(4, 5, -1)]
+        [InlineData(22.3, 11.5, 10.8)]
+        [InlineData(13, -5, 18)]
         public void SubstractTest(double x, double y, double result)
         {
-            Assert.AreEqual(result, calculator.Subtract(x, y));
+            Assert.Equal(result, calculator.Subtract(x, y));
         }
 
-
-        [TestCase(4, 5, 20)]
-        [TestCase(12.5, 0.24, 3)]
-        [TestCase(13, -5, -65)]
+        [Theory]
+        [InlineData(4, 5, 20)]
+        [InlineData(12.5, 0.24, 3)]
+        [InlineData(13, -5, -65)]
         public void MultiplyTest(double x, double y, double result)
         {
-            Assert.AreEqual(result, calculator.Multiply(x, y));
+            Assert.Equal(result, calculator.Multiply(x, y));
         }
 
-
-        [TestCase(10, 2, 5)]
-        [TestCase(11.2, 2, 5.6)]
+        [Theory]
+        [InlineData(10, 2, 5)]
+        [InlineData(11.2, 2, 5.6)]
         public void DivideTest(double x, double y, double result)
         {
-            Assert.AreEqual(result, calculator.Divide(x, y));
+            Assert.Equal(result, calculator.Divide(x, y));
         }
 
-        [TestCase(13, 0)]
+        [Theory]
+        [InlineData(13, 0)]
         public void DivideTestZeroException(double x, double y)
         {
             Assert.Throws<DivideByZeroException>(() => calculator.Divide(x, y));
         }
 
-        [TestCase(10, 2, 100)]
-        [TestCase(6, 4, 1296)]
-        [TestCase(13, 0, 1)]
+        [Theory]
+        [InlineData(10, 2, 100)]
+        [InlineData(6, 4, 1296)]
+        [InlineData(13, 0, 1)]
         public void PowTest(double x, double y, double result)
         {
-            Assert.AreEqual(result, calculator.Pow(x, y));
+            Assert.Equal(result, calculator.Pow(x, y));
         }
 
 
